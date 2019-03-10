@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ResourceListStateResource } from "../models/ResourceListStateProps";
 
-const useResources = (resource: string) => {
-  const [resources, setResources] = useState<Array<ResourceListStateResource>>(
-    []
-  );
+const useResources = <T>(resource: string): Array<T> => {
+  const [resources, setResources] = useState<Array<T>>([]);
 
   useEffect(() => {
     (async (resource: string) => {

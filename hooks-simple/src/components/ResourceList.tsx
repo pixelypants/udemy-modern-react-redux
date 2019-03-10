@@ -6,11 +6,11 @@ import {
 import useResources from "./useResources";
 
 const ResourceList: FunctionComponent<ResourceListProps> = props => {
-  const resources = useResources(props.resource);
+  const resources = useResources<ResourceListStateResource>(props.resource);
 
   return (
     <ul>
-      {resources.map((record: ResourceListStateResource) => (
+      {resources.map(record => (
         <li key={record.id}>{record.title}</li>
       ))}
     </ul>
