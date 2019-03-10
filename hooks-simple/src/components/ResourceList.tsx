@@ -1,27 +1,16 @@
-import React, { useState, useEffect, FunctionComponent } from "react";
-import axios from "axios";
+import React, { FunctionComponent } from "react";
 import {
   ResourceListProps,
   ResourceListStateResource
 } from "../models/ResourceListStateProps";
+import useResources from "./useResources";
 
 const ResourceList: FunctionComponent<ResourceListProps> = props => {
-  const [resources, setResources] = useState<Array<ResourceListStateResource>>(
-    []
-  );
+  const resources = useResources(props.resource);
 
-  useEffect(() => {
-    (async (resource: string) => {
-      const response = await axios.get(
-        `https://jsonplaceholder.typicode.com/${resource}`
-      );
-
-      setResources(response.data);
-    })(props.resource);
-  }, [props.resource]);
   return (
     <ul>
-      {resources.map(record => (
+      {resources.map((record: ResourceListStateResource) => (
         <li key={record.id}>{record.title}</li>
       ))}
     </ul>
