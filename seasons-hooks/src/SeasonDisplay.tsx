@@ -1,27 +1,27 @@
-import "./SeasonDisplay.css";
-import React from "react";
-import { SeasonsState } from "./models/SeasonsPropsState";
+import './SeasonDisplay.css';
+import React, { FunctionComponent } from 'react';
+import { SeasonsProps } from './models/SeasonsPropsState';
 
 const seasonConfig = {
   summer: {
     text: "Let's hit the beach!",
-    iconName: "sun"
+    iconName: 'sun'
   },
   winter: {
-    text: "Burr it is cold!",
-    iconName: "snowflake"
+    text: 'Burr it is cold!',
+    iconName: 'snowflake'
   }
 };
 
 const getSeason = (lat: number = 0, month: number) => {
   if (month > 2 && month < 9) {
-    return lat > 0 ? "summer" : "winter";
+    return lat > 0 ? 'summer' : 'winter';
   } else {
-    return lat > 0 ? "winter" : "summer";
+    return lat > 0 ? 'winter' : 'summer';
   }
 };
 
-const SeasonDisplay = (props: SeasonsState) => {
+const SeasonDisplay = (props: SeasonsProps) => {
   const season = getSeason(props.lat, new Date().getMonth());
   const { text, iconName } = seasonConfig[season];
 
